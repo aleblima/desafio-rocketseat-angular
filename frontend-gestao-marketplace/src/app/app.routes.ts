@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: '',
     component: Layout, //component base para carregamento das rotas filhas, ele contem
     //o router-outlet para renderizar as rotas filhas baseadas no path
+    canActivateChild: [], //guardas de rota para proteger as rotas filhas
     children: [
       {
         path: 'products',
@@ -26,7 +27,7 @@ export const routes: Routes = [
       },
       {
         path: 'new-product',
-        component: NewProduct
+        component: NewProduct,
       }
     ],
   },
