@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IAuthSucessResponse } from '../interfaces/auth-sucess-response';
 import { Observable } from 'rxjs/internal/Observable';
+import { login } from '../../../../backend-gestao-marketplace/src/controllers/auth-controller';
+import { ILoginSucessResponse } from '../interfaces/login-sucess-response';
 
 @Injectable({
   providedIn: 'root' //99% dos services usam providedIn root para serem singleton e acessiveis em toda a aplicacao
@@ -17,5 +19,12 @@ validateUser(): Observable<IAuthSucessResponse> {
   //importar o IAuthSucessResponse da interface criada,
   // baseada na resposta da API via insomnia para receber o tipo de dado correto.
   //Você chama o metodo e se inscreve no retorno(observable), para que a chamada http seja disparada
+}
+
+//sempre olhar se o observable é object, se for, alterar para o tipo correto
+login (email: string, password: string){
+  // o post pede 2-3 parametros, a url, o body e as vezes um header
+  const body = { email, password };
+  return this._httpClient.post<ILoginSucessResponse>('http://localhost:3000/api/users/login', body);
 }
 }

@@ -1,8 +1,8 @@
-import { CanActivateFn, Router } from "@angular/router";
-import { UserService } from "../services/user";
 import { inject } from "@angular/core";
+import { CanActivateFn, Router } from "@angular/router";
+import { firstValueFrom } from "rxjs";
+import { UserService } from "../services/user";
 import { UserAuthService } from "../services/user-auth";
-import { first, firstValueFrom } from "rxjs";
 
 export const authGuard: CanActivateFn = async(route, state) => {
   //requisição para o endpoint "protected", pegar o token do usuário e verificar se existe
