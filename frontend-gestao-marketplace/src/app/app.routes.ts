@@ -3,6 +3,7 @@ import { Login } from './pages/login/login';
 import { Products } from './pages/products/products';
 import { Layout } from './pages/layout/layout';
 import { NewProduct } from './pages/new-product/new-product';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -19,7 +20,7 @@ export const routes: Routes = [
     path: '',
     component: Layout, //component base para carregamento das rotas filhas, ele contem
     //o router-outlet para renderizar as rotas filhas baseadas no path
-    canActivateChild: [], //guardas de rota para proteger as rotas filhas
+    canActivateChild: [authGuard], //guardas de rota para proteger as rotas filhas
     children: [
       {
         path: 'products',
