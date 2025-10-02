@@ -9,6 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class NewProduct {
 
+
   productImageBase64 = '';
   productForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -18,7 +19,43 @@ export class NewProduct {
   })
 
 saveProduct() {
-  console.log('productForm',this.productForm);
+  console.log('productForm', this.productForm);
+
+  if(this.productForm.invalid || !this.productImageBase64) return;
+
+
 }
+
+onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+
+  if(input.files && input.files.length > 0){
+    const file = input.files[0];
+
+    this.convertFileToBase64(file);
+  }
+}
+  convertFileToBase64(file: File) {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    //não tem na aula, mas o copilot sugeriu e funcionou
+
+    reader.onload = (e: any) => {
+      const imageBase64 = e.target.result as string;
+
+      this.productImageBase64 = imageBase64;
+
+      console.log(imageBase64)
+    }
+
+    reader.onerror = (_) => {
+      this.productImageBase64 = '';
+    }
+
+    reader.readAsDataURL = (file) => {
+
+    }
+  }
 
 }

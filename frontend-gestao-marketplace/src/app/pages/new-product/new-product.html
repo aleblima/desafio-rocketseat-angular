@@ -16,6 +16,7 @@
       type="file"
       class="hidden"
       accept=".png, .jpg, .jpeg"
+      (change)="onFileSelected($event)"
     />
     <!-- Dados produto -->
     <div class="p-8 bg-white rounded-4xl flex-1 flex flex-col gap-7">
@@ -88,8 +89,10 @@
             <span class="text-[#F24D0D] text-sm">Cancelar</span>
           </div>
         <!-- Botão Salvar -->
-          <div class="flex flex-1 justify-center p-3 rounded-lg bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200
-    ease-in-out transition"
+          <div [class]="`
+          flex flex-1 justify-center p-3 rounded-lg
+          ${productForm.valid && productImageBase64 ? ' bg-[#F24D0D] cursor-pointer active:translate-y-2 duration-200 ease-in-out transition' : 'bg-gray-500 cursor-default'}
+    `"
     (click)="saveProduct()"
           >
             <span class="text-white text-sm">Salvar e publicar</span>
