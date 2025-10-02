@@ -8,6 +8,6 @@ export class UserAuthService {
   getUserToken() {
     //implementar a lógica para pegar o token do usuário de onde ele estiver salvo,
     // neste caso no localStorage
-    return '';
+    return 'token';
   }
 }

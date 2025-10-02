@@ -7,6 +7,10 @@ import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
+    //desafio pós projeto é fazer um novo guard para o login
+    //se o usuário já estiver logado, não deixa acessar a tela de login
+    //redireciona para products, pois no auth-guard o if que deveria impedir não faz pois,
+    // o guard esta só para o products e new-product
     path: 'login',
     component: Login
   },
