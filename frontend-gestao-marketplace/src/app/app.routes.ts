@@ -4,6 +4,7 @@ import { Products } from './pages/products/products';
 import { Layout } from './pages/layout/layout';
 import { NewProduct } from './pages/new-product/new-product';
 import { authGuard } from './guards/auth-guard';
+import { loginAuthGuard } from './guards/login-auth-guard';
 
 export const routes: Routes = [
   {
@@ -12,7 +13,8 @@ export const routes: Routes = [
     //redireciona para products, pois no auth-guard o if que deveria impedir não faz pois,
     // o guard esta só para o products e new-product
     path: 'login',
-    component: Login
+    component: Login,
+    canActivate: [loginAuthGuard],
   },
   {
     path: '',
