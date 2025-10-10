@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../services/user';
 import { UserAuthService } from '../../services/user-auth';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class Login {
     //depois tem que se inscrever no observable
     this._userService.login(
     this.userForm.get('email')?.value as string,
-    this.userForm.get('password')?.value as string).subscribe({
+    this.userForm.get('password')?.value as string).pipe(take(1)).subscribe({
     //nos parametros ele precisou acessar o formulário para pegar as propriedades de email e senha
       next: (response) => {
         this.loginErrorMessage = '';
