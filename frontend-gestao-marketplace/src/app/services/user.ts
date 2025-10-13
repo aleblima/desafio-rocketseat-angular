@@ -4,6 +4,7 @@ import { IAuthSucessResponse } from '../interfaces/auth-sucess-response';
 import { Observable } from 'rxjs/internal/Observable';
 import { login } from '../../../../backend-gestao-marketplace/src/controllers/auth-controller';
 import { ILoginSucessResponse } from '../interfaces/login-sucess-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root' //99% dos services usam providedIn root para serem singleton e acessiveis em toda a aplicacao
@@ -15,7 +16,7 @@ export class UserService { //foi alterado para UserService para facilitar entend
 validateUser(): Observable<IAuthSucessResponse> {
   // O observable foi inserido aqui só para visualização, mesmo que não estivesse a vista,
   // ele ainda seria utilizado, já que foi definido no metodo get do HttpClient
-  return this._httpClient.get<IAuthSucessResponse>('http://localhost:3000/api/protected')
+  return this._httpClient.get<IAuthSucessResponse>(environment.apiUrl + '/protected')
   //importar o IAuthSucessResponse da interface criada,
   // baseada na resposta da API via insomnia para receber o tipo de dado correto.
   //Você chama o metodo e se inscreve no retorno(observable), para que a chamada http seja disparada
@@ -25,6 +26,6 @@ validateUser(): Observable<IAuthSucessResponse> {
 login (email: string, password: string){
   // o post pede 2-3 parametros, a url, o body e as vezes um header
   const body = { email, password };
-  return this._httpClient.post<ILoginSucessResponse>('http://localhost:3000/api/users/login', body);
+  return this._httpClient.post<ILoginSucessResponse>(environment.apiUrl + '/users/login', body);
 }
 }
