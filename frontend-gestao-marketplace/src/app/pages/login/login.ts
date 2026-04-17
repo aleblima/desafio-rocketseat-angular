@@ -14,8 +14,8 @@ import { take } from 'rxjs';
 export class Login {
   loginErrorMessage = '';
   userForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    email: new FormControl('novo@example.com', [Validators.required, Validators.email]),
+    password: new FormControl('123456', [Validators.required]),
   });
 
   private readonly _userService = inject(UserService);

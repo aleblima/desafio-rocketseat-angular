@@ -18,6 +18,8 @@
     <div>
       <h2 class="font-bold">Acesse sua conta</h2>
       <p class="font-light text-xs text-gray-600">Informe seu e-mail e senha para entrar</p>
+      <p class="font-bold text-sm text-blue-500 mt-2">Usuário de teste: novo@example.com</p>
+      <p class="font-bold text-sm text-blue-500">Senha: 123456 (ou equivalente)</p>
     </div>
     <!-- Inputs de Email e Senha -->
     <div class="flex flex-col gap-10">
@@ -29,7 +31,7 @@
           <input 
             class="text-gray-400 text-sm focus:outline-none" 
             type="text" 
-            placeholder="Seu e-mail cadastrado" 
+            placeholder="Ex: novo@example.com" 
             formControlName="email"
           />
         </div>
@@ -41,8 +43,8 @@
           <img class="mr-2 opacity-85 w-5 h-5" src="access.svg" />
           <input 
             class="text-gray-400 text-sm focus:outline-none" 
-            type="text" 
-            placeholder="Sua senha de acesso" 
+            type="password" 
+            placeholder="Ex: 123456" 
             formControlName="password"
           />
         </div>
