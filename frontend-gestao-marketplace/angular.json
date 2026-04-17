@@ -24,11 +24,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "../imagens",
-                "output": "imagens"
               }
             ],
             "styles": [
@@ -92,11 +87,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "../imagens",
-                "output": "imagens"
               }
             ],
             "styles": [

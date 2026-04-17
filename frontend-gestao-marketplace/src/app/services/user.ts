@@ -12,12 +12,12 @@ export class UserService {
   private readonly _httpClient = inject(HttpClient);
 
   validateUser(): Observable<IAuthSuccessResponse> {
-    return this._httpClient.get<IAuthSuccessResponse>(`${environment.apiUrl}/api/protected`);
+    return this._httpClient.get<IAuthSuccessResponse>(`${environment.apiUrl}/protected`);
   }
 
   login(email: string, password: string): Observable<ILoginSuccessResponse> {
     const body = { email, password };
 
-    return this._httpClient.post<ILoginSuccessResponse>(`${environment.apiUrl}/api/users/login`, body);
+    return this._httpClient.post<ILoginSuccessResponse>(`${environment.apiUrl}/users/login`, body);
   }
 }
