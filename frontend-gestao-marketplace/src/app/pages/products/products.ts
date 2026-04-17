@@ -3,6 +3,7 @@ import { ProductsService } from '../../services/products';
 import { take } from 'rxjs';
 import { IProductResponse } from '../../interfaces/product-response';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SearchService } from '../../services/search';
 
 @Component({
   selector: 'app-products',
@@ -14,23 +15,27 @@ export class Products implements OnInit {
   products: IProductResponse[] = [];
   filteredProducts: IProductResponse[] = [];
   filterForm = new FormGroup({
-    title: new FormControl(''),
     status: new FormControl(''),
   });
 
   private readonly _productsService = inject(ProductsService);
+  private readonly _searchService = inject(SearchService);
 
   ngOnInit() {
     this._productsService.getProducts().pipe(take(1)).subscribe({
       next: (response) => {
         this.products = response.data;
-        this.filteredProducts = response.data;
+        this.filterProducts();
       },
-    })
+    });
+
+    this._searchService.searchTerm$.subscribe(() => {
+      this.filterProducts();
+    });
   }
 
   filterProducts() {
-    const title = this.filterForm.value.title?.toLowerCase();
+    const title = this._searchService.getSearchTerm().toLowerCase();
     const status = this.filterForm.value.status?.toLowerCase();
 
     this.filteredProducts = this.products.filter((product) => 
@@ -42,6 +47,7 @@ export class Products implements OnInit {
   clearFilter() {
     this.filterForm.reset();
     this.filterForm.get('status')?.setValue('');
+    this._searchService.setSearchTerm('');
 
     this.filteredProducts = this.products;
   }
